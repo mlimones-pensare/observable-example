@@ -1,7 +1,7 @@
-<p>*******</p>
-<p>component 3</p>
+<h2>Child component 3</h2>
+<p>This component subscribes at the ngOnInit hook</p>
 <ul>
   <li *ngFor="let hero of heroes">{{ hero }}</li>
 </ul>
 <input type="text" [(ngModel)]="newHero">
-<button (click)="addHero()" >Add hero</button>
+<button (click)="addHero()">Add hero</button>

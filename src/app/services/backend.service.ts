@@ -1,4 +1,5 @@
 import {Injectable} from '@angular/core';
+import {of} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -14,8 +15,8 @@ export class BackendService {
     return JSON.parse(JSON.stringify(this.heroes));
   }
 
-  async addHero(newHero: string): Promise<any> {
+  addHero(newHero: string): Promise<any> {
     this.heroes.push(newHero);
-    return {message: 'ok'};
+    return of({message: 'ok'}).toPromise();
   }
 }

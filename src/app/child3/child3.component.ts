@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {BackendProxyService} from '../services/backend-proxy.service';
+import {BackendService} from '../services/backend.service';
 
 @Component({
   selector: 'app-child3',

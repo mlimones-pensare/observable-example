@@ -7,7 +7,6 @@ import {BackendProxyService} from '../services/backend-proxy.service';
   styleUrls: ['./child1.component.scss']
 })
 export class Child1Component implements OnInit {
-
   private heroes: string[];
 
   constructor(private backend: BackendProxyService) {
