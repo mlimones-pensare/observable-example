@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 
 @Injectable({
   providedIn: 'root'
@@ -7,7 +7,8 @@ export class BackendService {
 
   private heroes = ['rapidin', 'goma elastica'];
 
-  constructor() { }
+  constructor() {
+  }
 
   async getHeroes(): Promise<string[]> {
     return JSON.parse(JSON.stringify(this.heroes));

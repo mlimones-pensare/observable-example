@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {BackendProxyService} from '../services/backend-proxy.service';
 
 @Component({
@@ -7,11 +7,11 @@ import {BackendProxyService} from '../services/backend-proxy.service';
   styleUrls: ['./child3.component.scss']
 })
 export class Child3Component implements OnInit {
-  private heroes =  [];
+  private heroes = [];
   private newHero: string;
 
-
-  constructor(private backend: BackendProxyService) { }
+  constructor(private backend: BackendProxyService) {
+  }
 
   ngOnInit() {
     this.backend.getHeroes().subscribe(value => this.updateHeroesInView(value));
