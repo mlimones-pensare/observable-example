@@ -1,7 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {ProviderService} from '../provider.service';
-import {log} from 'util';
-import {map} from 'rxjs/operators';
+import {BackendProxyService} from '../services/backend-proxy.service';
 
 @Component({
   selector: 'app-child2',
@@ -10,17 +8,27 @@ import {map} from 'rxjs/operators';
 })
 export class Child2Component implements OnInit {
 
-  private numberOfClicks = 0;
+  private heroes: string[];
+  private subscription;
 
-  constructor(private provider: ProviderService) {
+  constructor(private backend: BackendProxyService) {
   }
 
   ngOnInit() {
-    this.provider.getClicks().pipe(map(value => value * 10)).subscribe(value => {
-        console.log(value);
-        this.numberOfClicks = value;
-      }, error1 => {},
-      () => console.log('completado!'));
+  }
+
+  lateSubscribe() {
+    if (!this.subscription) {
+      this.subscription = this.subscribe();
+    }
+  }
+
+  subscribe() {
+    return this.backend.getHeroes().subscribe(value => this.updateHeroesInView(value));
+  }
+
+  updateHeroesInView(heroes) {
+    this.heroes = heroes;
   }
 
 }

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {ProviderService} from '../provider.service';
+import {BackendProxyService} from '../services/backend-proxy.service';
 
 @Component({
   selector: 'app-child3',
@@ -7,17 +7,22 @@ import {ProviderService} from '../provider.service';
   styleUrls: ['./child3.component.scss']
 })
 export class Child3Component implements OnInit {
+  private heroes =  [];
+  private newHero: string;
 
-  private numberOfClicks = 0;
 
-  constructor(private provider: ProviderService) { }
+  constructor(private backend: BackendProxyService) { }
 
   ngOnInit() {
+    this.backend.getHeroes().subscribe(value => this.updateHeroesInView(value));
   }
 
-  increaseClicks(){
-    this.numberOfClicks += 1;
-    this.provider.updateClicks(this.numberOfClicks);
+  updateHeroesInView(heroes) {
+    this.heroes = heroes;
   }
 
+  async addHero() {
+    await this.backend.addHero(this.newHero);
+    this.newHero = '';
+  }
 }

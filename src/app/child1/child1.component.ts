@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import {ProviderService} from '../provider.service';
+import {Component, OnInit} from '@angular/core';
+import {BackendProxyService} from '../services/backend-proxy.service';
 
 @Component({
   selector: 'app-child1',
@@ -8,16 +8,16 @@ import {ProviderService} from '../provider.service';
 })
 export class Child1Component implements OnInit {
 
-  private numberOfClicks = 0;
+  private heroes: string[];
 
-  constructor(private provider: ProviderService) { }
-
-  ngOnInit() {
-    this.provider.getClicks().subscribe(value => {
-        console.log(value);
-        this.numberOfClicks = value;
-      }, error1 => {},
-      () => console.log('completado!'));
+  constructor(private backend: BackendProxyService) {
   }
 
+  ngOnInit() {
+    this.backend.getHeroes().subscribe(value => this.updateHeroesInView(value));
+  }
+
+  updateHeroesInView(heroes) {
+    this.heroes = heroes;
+  }
 }

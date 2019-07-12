@@ -1,2 +1,7 @@
-<p>child 3 works! {{numberOfClicks}}</p>
-<button (click)="increaseClicks()" >Click me!</button>
+<p>*******</p>
+<p>component 3</p>
+<ul>
+  <li *ngFor="let hero of heroes">{{ hero }}</li>
+</ul>
+<input type="text" [(ngModel)]="newHero">
+<button (click)="addHero()" >Add hero</button>

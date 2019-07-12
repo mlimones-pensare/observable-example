@@ -1,1 +1,6 @@
-<p>child2 works! {{numberOfClicks}}</p>
+<p>child2 works>
+<ul>
+  <li *ngFor="let hero of heroes">{{ hero }}</li>
+</ul>
+
+<button (click)="lateSubscribe()">subscribe</button>
